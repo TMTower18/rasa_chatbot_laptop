@@ -7,7 +7,8 @@ RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook'
 
 @app.route('/')
 def index():
-    return render_template('index.php')
+    php_response = requests.get('http://localhost:8000/index.php')
+    return php_response.text
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -30,6 +31,6 @@ def webhook():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=3000)
+    app.run(port=5000)
 
 
